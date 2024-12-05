@@ -7,31 +7,29 @@ namespace Exercici1
     {
         public static void Main()
         {
-            const string InsertaValor = "Inserta el valor que vulguis buscar a l'array:";
-            const string Error = "El valor insertat ha de ser un numero enter";
-            const string Trobat = "El teu numero si esta a l'Array";
-            const string NoTrobat = "El teu numero no esta a l'Array";
-            const string ErrorArray = "La longitud del array es invalida";
-            int numUser;
-            int resultat;
-            int[] arrayBuscar = { 10, -4, 6, 4, 8, 13, 2, -4 };
-            SecondSort.Order(arrayBuscar, 0, arrayBuscar.Length - 1);
-            Console.WriteLine(InsertaValor);
-            try
+            const string IntrodueixData = "Introdueix el dia, mes i any";
+            const string DataValida = "Aquesta data es valida";
+            const string DataNoValida = "Aquesta data no es valida";
+            int dia;
+            int mes;
+            int any;
+            int diasPerMes;
+            bool bisiesto;
+            do {
+                Console.WriteLine(IntrodueixData);
+                dia = int.Parse(Console.ReadLine());
+                mes = int.Parse(Console.ReadLine());
+                any = int.Parse(Console.ReadLine());
+            } while (dia < 1 || dia > 31);
+            bisiesto = (any % 400 == 0) || ((any % 4 == 0) && (any % 100 != 0));
+            diasPerMes = DataCheck.DiaPerMesos(mes, bisiesto);
+            if (diasPerMes < dia)
             {
-                numUser = int.Parse(Console.ReadLine());
-                resultat = SearchClass.BinarySearch(arrayBuscar, 0, arrayBuscar.Length - 1, numUser);
-                if (resultat == -1)
-                {
-                    Console.WriteLine(NoTrobat);
-                }
-                else
-                {
-                    Console.WriteLine(Trobat);
-                }
+                Console.WriteLine(DataNoValida);
             }
-            catch (FormatException) { 
-                Console.WriteLine(Error);
+            else
+            {
+                Console.WriteLine(DataValida);
             }
         }
     }
