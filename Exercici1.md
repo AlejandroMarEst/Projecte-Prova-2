@@ -19,7 +19,7 @@ Retorna 3 i acaba
 Aquest metode agafa el numero que tu insertas i retorna el numero de les seves xifres.
 (O directament el numero si es menor a 10)
 
-´´´ C#
+``` C#
 public static int RecMethod(int num)
 {
 	int total = 0;
@@ -34,4 +34,4 @@ public static int RecMethod(int num)
 
 	return RecMethod(total);
 }
-´´´
+```
