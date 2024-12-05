@@ -7,29 +7,35 @@ namespace Exercici1
     {
         public static void Main()
         {
-            const string IntrodueixData = "Introdueix el dia, mes i any";
-            const string DataValida = "Aquesta data es valida";
-            const string DataNoValida = "Aquesta data no es valida";
-            int dia;
-            int mes;
-            int any;
-            int diasPerMes;
-            bool bisiesto;
-            do {
-                Console.WriteLine(IntrodueixData);
-                dia = int.Parse(Console.ReadLine());
-                mes = int.Parse(Console.ReadLine());
-                any = int.Parse(Console.ReadLine());
-            } while (dia < 1 || dia > 31);
-            bisiesto = (any % 400 == 0) || ((any % 4 == 0) && (any % 100 != 0));
-            diasPerMes = DataCheck.DiaPerMesos(mes, bisiesto);
-            if (diasPerMes < dia)
+            const string InsertNum = "Inserta un valor";
+            const string InsertNumBuscar = "Inserta el valor que vols buscar";
+            const string BusquedaPositiva = "Si esta a l'array";
+            const string BusquedaNegativa = "No esta a l'array";
+            const string Error = "Inserta nums enters";
+            int[] arrayNums = new int[20];
+            int numBuscar;
+            int resultat;
+            try
             {
-                Console.WriteLine(DataNoValida);
+                for (int i = 0; i < arrayNums.Length; i++)
+                {
+                    Console.WriteLine(InsertNum);
+                    arrayNums[i] = int.Parse(Console.ReadLine());
+                }
+                Arrays.ArrayOrder(arrayNums);
+                Console.WriteLine(InsertNumBuscar);
+                numBuscar = int.Parse(Console.ReadLine());
+                resultat = Search.ArraySearch(arrayNums, 0, arrayNums.Length -1, numBuscar);
+                if (resultat == -1)
+                {
+                    Console.WriteLine(BusquedaNegativa);
+                }
+                else { 
+                    Console.WriteLine(BusquedaPositiva);
+                }
             }
-            else
-            {
-                Console.WriteLine(DataValida);
+            catch (FormatException) {
+                Console.WriteLine(Error);
             }
         }
     }
